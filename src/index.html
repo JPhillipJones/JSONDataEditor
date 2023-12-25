@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h1>JSON Data Editor</h1>
+    <div>
+    <div class="twoColumnShortLong">
+      <div>
+        Tables
+      </div>
+      <div>
+        Records
+      </div>
+      <div>
+        <ul id="tablelist">
+          
+        </ul>
+        <button id="btnSave" value="Save" onclick="saveChanges()" style="display: none">Save Changes</button>
+      </div>
+        <div id="dataPane">
+          <table>
+            <thead id="dataColumns">
+            <tr id="columnsRow">
+  
+            </tr>
+            </thead>
+            <tbody id="results">
+  
+            </tbody>
+          </table>
+  
+        </div>
+    </div>
+    </div>
+
+    <hr />
+    <div id="debugText"></div>
+  </body>
+</html>
+<script defer src="main.js"></script>

@@ -1,0 +1,16 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+
+  max-width: 38rem;
+  padding: 2rem;
+}
+
+
+.twoColumnShortLong {
+  display: grid;
+  grid-template-columns: 220px 700px;
+  grid-gap: 5px;
+  margin-right: auto;
+  width: 925px;
+}
