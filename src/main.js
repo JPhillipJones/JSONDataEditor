@@ -61,13 +61,14 @@ function saveChanges()
             console.log('Successfully wrote file');
         }
     });
-    alert("Changes Saved")
+    dbT.innerHTML = "Changes Saved!";
+
     var textBoxes = document.querySelectorAll("input");
         
     textBoxes.forEach(txt => {
     if(txt.type == "text")
         {
-            txt.style.backgroundColor = 'white';
+            txt.removeAttribute("style");
         }
     });
     document.getElementById("btnSave").style.display = "none";
