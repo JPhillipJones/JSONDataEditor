@@ -1,18 +1,29 @@
 const dbT = document.getElementById('debugText');
+const folderPath = "../Data/";
 var theJSON;
 var jsonPath;
  
 dbT.innerHTML = 'Starting App...';
 
+const { log } = require('console');
 const fs = require('fs');
+const path = require('path');
+
 
 dbT.innerHTML = 'About to Read Files...';
-let files = fs.readdirSync('data/');
+let allfiles = fs.readdirSync(folderPath);
+
+const EXTENSION = '.json';
+
+const files = allfiles.filter(file => {
+    return path.extname(file).toLowerCase() === EXTENSION;
+});
+
 const tablelist = document.getElementById('tablelist');
 
 for(var i = 0,f; f= files[i]; i++)
 {
-    dbT.innerHTML = 'Loop Interation: ' + i;
+    dbT.innerHTML = (i + 1) + ' Files Loaded';
     var fileListItem = document.createElement('li');
     var fileName = document.createTextNode(f);
     let fname = f;
@@ -50,13 +61,14 @@ function saveChanges()
             console.log('Successfully wrote file');
         }
     });
-    alert("Changes Saved")
+    dbT.innerHTML = "Changes Saved!";
+
     var textBoxes = document.querySelectorAll("input");
         
     textBoxes.forEach(txt => {
     if(txt.type == "text")
         {
-            txt.style.backgroundColor = 'white';
+            txt.removeAttribute("style");
         }
     });
     document.getElementById("btnSave").style.display = "none";
@@ -66,7 +78,7 @@ function saveChanges()
 async function readJSONFile(filename)
 {
     var readJson = require('read-json-file');
-    jsonPath = "data/" + filename;
+    jsonPath = folderPath + filename;
 
     let promise = new Promise((resolve, reject) => {
         fs.readFile(jsonPath, "utf8", (error, data) => {
