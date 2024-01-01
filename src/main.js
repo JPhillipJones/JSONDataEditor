@@ -2,11 +2,14 @@ const dbT = document.getElementById('debugText');
 const folderPath = "../Data/";
 var theJSON;
 var jsonPath;
+var md = document.getElementsByClassName("modalContent")[0];
+var mdb = document.getElementsByClassName("modalBackground")[0];
  
 dbT.innerHTML = 'Starting App...';
 
 const { log } = require('console');
 const fs = require('fs');
+const readJson = require('read-json-file');
 const path = require('path');
 
 
@@ -43,6 +46,17 @@ for(var i = 0,f; f= files[i]; i++)
     tablelist.appendChild(fileListItem);
 }
 
+function closeModal()
+{
+    md.style.display = "none";
+    mdb.style.display = "none";
+}
+
+function openModal()
+{
+    md.style.display = "block";
+    mdb.style.display = "block";
+}
 function saveChanges()
 {
 
@@ -61,8 +75,8 @@ function saveChanges()
             console.log('Successfully wrote file');
         }
     });
-    dbT.innerHTML = "Changes Saved!";
-
+    //dbT.innerHTML = "Changes Saved!";
+    openModal();
     var textBoxes = document.querySelectorAll("input");
         
     textBoxes.forEach(txt => {
@@ -75,9 +89,10 @@ function saveChanges()
 }
 
 
+
 async function readJSONFile(filename)
 {
-    var readJson = require('read-json-file');
+    
     jsonPath = folderPath + filename;
 
     let promise = new Promise((resolve, reject) => {
@@ -143,6 +158,9 @@ function loadResults()
         var dataColumnHeader = document.createElement('th');
         if(key != "EditorRowKey"){ 
             dataColumnHeader.textContent = key;
+            dataColumnHeader.addEventListener("click", (event) => {
+                selectSortColumn(event);
+            });
         }
         headerRow.appendChild(dataColumnHeader);
     });
@@ -159,7 +177,7 @@ function loadResults()
                 var datatextbox = document.createElement('input');
                 datatextbox.type = "text";
                 datatextbox.value = row[key];
-                datatextbox.addEventListener("change", (event) => {
+                datatextbox.addEventListener("input", (event) => {
                     valueChanged(event);
                 });
                 datafield.appendChild(datatextbox);                
@@ -174,5 +192,30 @@ function loadResults()
         results.appendChild(dataRow);
     });
     
-    
+
+}
+
+function sortTableByColumn (tableId, columnNumber) {
+    // Get the table element by its id
+    var tableElement = document.getElementById (tableId);
+    // Convert the table rows into an array
+    var rows = Array.from (tableElement.rows);
+    // Sort the array based on the value of the specified column
+    rows.sort (function (a, b) {
+        // Get the text content of the cells
+        var aColText = a.cells[columnNumber].firstChild.value.trim();
+        var bColText = b.cells[columnNumber].firstChild.value.trim();
+        // Compare the text content using localeCompare
+        return aColText.localeCompare (bColText);
+    });
+    // Append the sorted rows back to the table
+    rows.forEach (function (row) {
+        tableElement.appendChild (row);
+    });
+}
+
+function selectSortColumn(e)
+{
+    var cnt = e.target.cellIndex;
+    sortTableByColumn("results",cnt)
 }
