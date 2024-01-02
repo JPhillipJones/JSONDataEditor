@@ -9,8 +9,34 @@ body {
 
 .twoColumnShortLong {
   display: grid;
-  grid-template-columns: 220px 700px;
+  grid-template-columns: 220px 1000px;
   grid-gap: 5px;
   margin-right: auto;
-  width: 925px;
+  width: 1225px;
+}
+
+.modalBackground{
+  z-index: 1;
+  display: none;
+  left:  0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+  opacity: 50%;
+  position: absolute;
+}
+
+.modalContent {
+  z-index: 3;
+  display: none;
+  position: absolute;
+  left:  0;
+  top: 0;
+  background-color: #fefefe;
+  margin-top: 15%;
+  margin-left: 42%;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 15%; /* Could be more or less, depending on screen size */
 }

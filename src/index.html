@@ -21,9 +21,9 @@
         </ul>
         <button id="btnSave" value="Save" onclick="saveChanges()" style="display: none">Save Changes</button>
       </div>
-        <div id="dataPane">
-          <table>
-            <thead id="dataColumns">
+        <div id="dataPane" style="overflow: scroll; height: 600px">
+          <table id="dataTable">
+            <thead id="dataColumns" style="position: sticky; top: 0px; background: #eee;">
             <tr id="columnsRow">
   
             </tr>
@@ -39,6 +39,15 @@
 
     <hr />
     <div id="debugText"></div>
+  
+  <div class="modalBackground">
+  </div>
+    <div class="modalContent">
+      <p>JSON Data Saved!</p>
+      <button onclick="closeModal()" >OK</button>
+    </div>
+
+
   </body>
 </html>
 <script defer src="main.js"></script>
