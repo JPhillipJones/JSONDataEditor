@@ -12,6 +12,8 @@ const fs = require('fs');
 const readJson = require('read-json-file');
 const path = require('path');
 
+var mainDiv = document.getElementById("dvMain");
+mainDiv.style.width = window.screen.width + "px";
 
 dbT.innerHTML = 'About to Read Files...';
 let allfiles = fs.readdirSync(folderPath);

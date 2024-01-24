@@ -8,20 +8,23 @@
   <body>
     <h1>JSON Data Editor</h1>
     <div>
-    <div class="twoColumnShortLong">
+    <div id="dvMain"  class="twoColumnShortLong">
       <div>
         Tables
       </div>
       <div>
-        Records
+        Records 
       </div>
       <div>
         <ul id="tablelist">
           
         </ul>
         <button id="btnSave" value="Save" onclick="saveChanges()" style="display: none">Save Changes</button>
+        
+    <hr />
+    <div id="debugText"></div>
       </div>
-        <div id="dataPane" style="overflow: scroll; height: 600px">
+        <div id="dataPane" style="overflow-y: scroll; height: 600px">
           <table id="dataTable">
             <thead id="dataColumns" style="position: sticky; top: 0px; background: #eee;">
             <tr id="columnsRow">
@@ -37,8 +40,6 @@
     </div>
     </div>
 
-    <hr />
-    <div id="debugText"></div>
   
   <div class="modalBackground">
   </div>
